@@ -28,12 +28,16 @@ headPercentage=`awk "BEGIN { print ($h/$flips)*100 }"`
 tailPercentage=`awk "BEGIN { print ($t/$flips)*100 }"`
 echo "$headPercentage% head"
 echo "$tailPercentage% Tail"
-
+arr2=($headPercentage $tailPercentage)
 for KEY in "${arr[@]}";
 do
    echo $KEY
 done
 echo "Singlet Array: ${arr[@]}"
+declare -A arra3=( ["H"]=$headPercentage ["T"]=$tailPercentage )
+echo ${!arra3[*]} 
+echo ${arra3[*]}
+
 }
 
 function doublet(){
@@ -77,16 +81,10 @@ hhPercentage=`awk "BEGIN { print ($hh/$flips)*100 }"`
 ttPercentage=`awk "BEGIN { print ($tt/$flips)*100 }"`
 htPercentage=`awk "BEGIN { print ($ht/$flips)*100 }"`
 thPercentage=`awk "BEGIN { print ($th/$flips)*100 }"`
-echo "$hhPercentage% HH"
-echo "$ttPercentage% TT"
-echo "$hhPercentage% HT"
-echo "$ttPercentage% TH"
-
-for KEY in "${arr[@]}";
-do
-   echo $KEY
-done
 echo "Doublet Array: ${arr[@]}"
+declare -A arr2=( ["HH"]=$hhPercentage ["TT"]=$ttPercentage ["HT"]=$htPercentage ["TH"]=$thPercentage )
+echo ${!arr2[*]}
+echo ${arr2[*]}
 
 }
 
