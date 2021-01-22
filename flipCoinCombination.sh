@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash 
 
 flips=0
 
@@ -87,6 +87,82 @@ echo ${!arr2[*]}
 echo ${arr2[*]}
 
 }
+function triplet(){
+flips=0
+while [[ $flips -lt 10 ]]
+do
+   coin1=$((RANDOM%2))
+   coin2=$((RANDOM%2))
+   coin3=$((RANDOM%2))
+
+   if [[ $coin1 -eq 1 && $coin2 -eq 1  && $coin3 -eq 1 ]]
+        then
+        echo "HHH"
+        hhh=$(($hhh+1))
+        hhh1="HHH"
+        arr[flips]=$hhh1
+
+   elif [[ $coin1 -eq 1 && $coin2 -eq 1  && $coin3 -eq 0 ]]
+        then
+        echo "HHT"
+        hht=$(($hht+1))
+        hht1="HHT"
+        arr[flips]=$hht1
+    elif [[ $coin1 -eq 1 && $coin2 -eq 0  && $coin3 -eq 0 ]]
+        then
+        echo "HTT"
+        htt=$(($htt+1))
+        htt1="HTT"
+        arr[flips]=$htt1
+   elif [[ $coin1 -eq 0 && $coin2 -eq 0  && $coin3 -eq 0 ]]
+        then
+        echo "TTT"
+        ttt=$(($ttt+1))
+        ttt1="TTT"
+        arr[flips]=$ttt1
+    elif [[ $coin1 -eq 0 && $coin2 -eq 0  && $coin3 -eq 1 ]]
+        then
+        echo "TTH"
+        tth=$(($tth+1))
+        tth1="TTH"
+        arr[flips]=$tth1
+   elif [[ $coin1 -eq 0 && $coin2 -eq 1  && $coin3 -eq 1 ]]
+        then
+        echo "THH"
+        thh=$(($thh+1))
+        thh1="THH"
+        arr[flips]=$thh1
+   elif [[ $coin1 -eq 1 && $coin2 -eq 0  && $coin3 -eq 1 ]]
+        then
+        echo "HTH"
+        hth=$(($hth+1))
+        hth1="HTH"
+        arr[flips]=$hth1
+
+   else
+        echo "THT"
+        tht=$(($tht+1))
+        tht1="THT"
+        arr[flips]=$tht1
+   fi
+   flips=$(($flips+1))
+done
+echo "$flips flips $hhh-HHH $ttt-TTT $hht-HHT $tth-TTH $htt-HTT $tht-THT $hth-HTH $thh-THH  "
+hhhPercentage=`awk "BEGIN { print ($hhh/$flips)*100 }"`
+tttPercentage=`awk "BEGIN { print ($ttt/$flips)*100 }"`
+hhtPercentage=`awk "BEGIN { print ($hht/$flips)*100 }"`
+tthPercentage=`awk "BEGIN { print ($tth/$flips)*100 }"`
+thhPercentage=`awk "BEGIN { print ($thh/$flips)*100 }"`
+httPercentage=`awk "BEGIN { print ($htt/$flips)*100 }"`
+hthPercentage=`awk "BEGIN { print ($hth/$flips)*100 }"`
+thtPercentage=`awk "BEGIN { print ($tht/$flips)*100 }"`
+echo "Doublet Array: ${arr[@]}"
+declare -A arr2=( ["HHH"]=$hhhPercentage ["TTT"]=$tttPercentage ["HHT"]=$hhtPercentage ["HTT"]=$httPercentage ["THH"]=$thhPercentage ["TTH"]=$tthPercentage ["THT"]=$thtPercentage ["HTH"]=$hthPercentage )
+echo ${!arr2[*]}
+echo ${arr2[*]}
+
+}
 
 singlet
 doublet
+triplet
